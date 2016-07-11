@@ -23,6 +23,11 @@
   router.post('/tasks', function(req, res, next) {
     return models.Task.create(req.body).then(function(created_obj) {
       return res.json(created_obj);
+    })["catch"](function(err) {
+      res.status = 400;
+      return res.json({
+        msg: err
+      });
     });
   });
 

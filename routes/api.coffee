@@ -15,6 +15,9 @@ router.post '/tasks', (req, res, next) ->
   models.Task.create(req.body)
   .then (created_obj) ->
     res.json created_obj
+  .catch (err) ->
+    res.status = 400
+    res.json(msg: err)
 
 router.delete '/tasks/:id', (req, res, next) ->
   models.Task.destroy(where: {id: req.params.id})
