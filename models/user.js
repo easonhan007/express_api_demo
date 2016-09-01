@@ -2,25 +2,18 @@
 (function() {
   'use strict';
   module.exports = function(sequelize, DataTypes) {
-    var Task;
-    Task = sequelize.define('Task', {
-      title: {
-        type: DataTypes.STRING,
-        validate: {
-          notEmpty: true
-        }
-      },
-      desc: DataTypes.STRING,
-      done: DataTypes.BOOLEAN,
+    var User;
+    User = sequelize.define('User', {
+      username: DataTypes.STRING,
+      password: DataTypes.STRING,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE
     }, {
-      tableName: 'tasks',
       classMethods: {
         associate: function(models) {}
       }
     });
-    return Task;
+    return User;
   };
 
 }).call(this);

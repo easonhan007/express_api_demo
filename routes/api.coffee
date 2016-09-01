@@ -1,5 +1,5 @@
-express = require('express');
-router = express.Router();
+express = require('express')
+router = express.Router()
 models = require('../models')
 
 router.get '/tasks', (req, res, next) ->

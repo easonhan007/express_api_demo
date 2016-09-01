@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) ->
     title:
       type: DataTypes.STRING
       validate:
-        notNull: true
+        notEmpty: true
     desc: DataTypes.STRING
     done: DataTypes.BOOLEAN
     createdAt: DataTypes.DATE
