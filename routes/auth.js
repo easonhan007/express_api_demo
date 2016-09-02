@@ -31,7 +31,6 @@
       }
     }).then(function(user) {
       var info, token;
-      console.log('xxxxxxxxxxoooooooo');
       if (bcrypt.compareSync(req.body.password, user.password)) {
         info = {
           username: user.username,

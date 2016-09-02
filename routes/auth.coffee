@@ -14,7 +14,6 @@ router.post '/login', (req, res, next) ->
 
   models.User.findOne(where: {username: req.body.username})
   .then (user) ->
-    console.log('xxxxxxxxxxoooooooo')
     if bcrypt.compareSync(req.body.password, user.password)
       info = {username: user.username, id: user.id}
       token = jwt.sign info, jwt_secret, {expiresIn: jwt_expire}
