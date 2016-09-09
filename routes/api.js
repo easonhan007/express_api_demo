@@ -9,7 +9,9 @@
   models = require('../models');
 
   router.get('/tasks', function(req, res, next) {
-    return models.Task.findAll().then(function(tasks) {
+    return models.Task.findAll({
+      order: 'createdAt DESC'
+    }).then(function(tasks) {
       return res.json(tasks || []);
     });
   });

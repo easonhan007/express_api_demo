@@ -3,7 +3,7 @@ router = express.Router()
 models = require('../models')
 
 router.get '/tasks', (req, res, next) ->
-  models.Task.findAll().then (tasks) ->
+  models.Task.findAll({order: 'createdAt DESC'}).then (tasks) ->
     res.json tasks || []
 
 router.get '/tasks/:id', (req, res, next) ->

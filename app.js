@@ -30,13 +30,17 @@
     extended: false
   }));
 
+  app.use(express["static"](path.join(__dirname, 'public')));
+
   app.set('x-powered-by', false);
 
-  app.use(express_jwt({
-    secret: jwt_secret
-  }).unless({
-    path: ['/register', '/login']
-  }));
+  app.all('*', function(req, res, next) {
+    res.append('Access-Control-Allow-Origin', '*');
+    res.append('Access-Control-Allow-Credentials', 'true');
+    res.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS,DELETE,PUT');
+    res.append('Access-Control-Allow-Headers', 'Authorization,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type');
+    return next();
+  });
 
   app.use('/', auth);
 

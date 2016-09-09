@@ -8,20 +8,27 @@ jwt_secret = 'this is a bad secret'
 routes = require('./routes/index')
 auth = require('./routes/auth')
 api = require('./routes/api')
+# cors = require('cors')
 
 app = express();
 
+# app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-# app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
-# app.set('views', path.join(__dirname, 'views'))
-# app.set('view engine', 'jade')
 app.set('x-powered-by', false)
 
-# app.use('/', routes)
-app.use(express_jwt(secret: jwt_secret).unless(path: ['/register', '/login']))
+app.all('*', (req, res, next) ->
+  res.append('Access-Control-Allow-Origin', '*');
+  res.append('Access-Control-Allow-Credentials', 'true');
+  res.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS,DELETE,PUT');
+  res.append('Access-Control-Allow-Headers', 'Authorization,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type');
+  next();
+)
+
+# app.use(express_jwt(secret: jwt_secret).unless(path: ['/register', '/login']))
 app.use('/', auth)
 app.use('/api', api)
 
