@@ -29,14 +29,11 @@ npm start
 
 # API
 ```
-POST /login username/password
-POST /register username/password/password_confirmation
-GET /api/tasks
-GET /api/tastks/:task_id
-POST /api/tasks title/desc
-DELETE /api/tasks/:task_id
+POST /login username/password #login
+POST /register username/password/password_confirmation #register an user
+GET /api/tasks # get all tasks
+GET /api/tastks/:task_id # get a task with task_id
+PUT /api/tastks/:task_id # complete a task
+POST /api/tasks title/desc # create a task
+DELETE /api/tasks/:task_id # delete a task
 ```
-
-# TODO
-
-add finish task api
