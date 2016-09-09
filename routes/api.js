@@ -19,6 +19,11 @@
   router.get('/tasks/:id', function(req, res, next) {
     return models.Task.findById(req.params.id).then(function(task) {
       return res.json(task || {});
+    })["catch"](function(err) {
+      res.status = 404;
+      return res.json({
+        msg: 'task does not exist'
+      });
     });
   });
 
@@ -41,6 +46,25 @@
     }).then(function(deleted_obj) {
       return res.json({
         id: req.params.id
+      });
+    });
+  });
+
+  router.put('/tasks/:id', function(req, res, next) {
+    return models.Task.findById(req.params.id).then(function(task) {
+      task.done = true;
+      return task.save().then(function() {
+        return res.json(task);
+      })["catch"](function(err) {
+        res.status = 400;
+        return res.json({
+          msg: 'can not complete task'
+        });
+      });
+    })["catch"](function(err) {
+      res.status = 404;
+      return res.json({
+        msg: 'task does not exist'
       });
     });
   });
