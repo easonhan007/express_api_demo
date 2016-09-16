@@ -28,7 +28,7 @@ app.all('*', (req, res, next) ->
   next();
 )
 
-# app.use(express_jwt(secret: jwt_secret).unless(path: ['/register', '/login']))
+app.use(express_jwt(secret: jwt_secret).unless(path: ['/register', '/login']))
 app.use('/', auth)
 app.use('/api', api)
 
