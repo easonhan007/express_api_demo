@@ -10,7 +10,9 @@
 
   router.get('/tasks', function(req, res, next) {
     return models.Task.findAll({
-      order: 'createdAt DESC'
+      order: 'createdAt DESC',
+      limit: req.query.limit,
+      offset: req.query.offset
     }).then(function(tasks) {
       return res.json(tasks || []);
     });

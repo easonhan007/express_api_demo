@@ -3,8 +3,8 @@ router = express.Router()
 models = require('../models')
 
 router.get '/tasks', (req, res, next) ->
-  models.Task.findAll({order: 'createdAt DESC'}).then (tasks) ->
-    res.json tasks || []
+  models.Task.findAll({order: 'createdAt DESC', limit: req.query.limit, offset: req.query.offset}).then (tasks) ->
+      res.json tasks || []
 
 router.get '/tasks/:id', (req, res, next) ->
   models.Task.findById(req.params.id)
@@ -40,5 +40,5 @@ router.put '/tasks/:id', (req, res, next) ->
   .catch (err) ->
     res.status = 404
     res.json(msg: 'task does not exist')
-    
+
 module.exports = router;

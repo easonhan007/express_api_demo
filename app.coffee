@@ -8,11 +8,9 @@ jwt_secret = 'this is a bad secret'
 routes = require('./routes/index')
 auth = require('./routes/auth')
 api = require('./routes/api')
-# cors = require('cors')
-
+default_query_params = require('./routes/default_query_params')
 app = express();
 
-# app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -29,9 +27,9 @@ app.all('*', (req, res, next) ->
 )
 
 app.use(express_jwt(secret: jwt_secret).unless(path: ['/register', '/login']))
+app.use(default_query_params)
 app.use('/', auth)
 app.use('/api', api)
-
 
 app.use (err, req, res, next) ->
   if err.name == 'UnauthorizedError'
