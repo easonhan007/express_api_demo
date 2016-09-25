@@ -2,6 +2,7 @@
 
 ## Install coffee-script and sequelize
 ```
+npm install -g cnpm --registry=https://registry.npm.taobao.org # optional install cnpm
 cnpm install -g coffee-script # for development
 cnpm install -g sequelize-cli # required for database migration
 ```
