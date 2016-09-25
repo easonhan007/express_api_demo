@@ -15,6 +15,7 @@ npm install #or cnpm install
 ```
 
 ## Database config
+* start mysql
 * modify config/config.json
 * create a database smile_task_development
 
