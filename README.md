@@ -2,8 +2,8 @@
 
 ## Install coffee-script and sequelize
 ```
-cnpm install -g coffee-script
-cnpm install -g sequelize-cli
+cnpm install -g coffee-script # for development
+cnpm install -g sequelize-cli # required for database migration
 ```
 
 ## Install dependencies  
