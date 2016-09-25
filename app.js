@@ -44,12 +44,6 @@
     return next();
   });
 
-  app.use(express_jwt({
-    secret: jwt_secret
-  }).unless({
-    path: ['/register', '/login']
-  }));
-
   app.use(default_query_params);
 
   app.use('/', auth);
